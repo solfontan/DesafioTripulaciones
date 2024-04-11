@@ -1,0 +1,74 @@
+Para realizar la regresión lineal basada en la fecha de donación (`donation_date`) y el monto de la donación (`amount`), primero necesitarás 
+agrupar los datos por día y calcular la suma de los montos de donación diarios. Luego, podrás aplicar la regresión lineal para predecir el monto de 
+donación basado en la fecha.
+
+Aquí hay un paso a paso de cómo podrías hacerlo utilizando Python y algunas de sus bibliotecas populares como Pandas, Matplotlib y scikit-learn:
+
+1. **Importar bibliotecas**:
+
+```python
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.linear_model import LinearRegression
+```
+
+2. **Cargar los datos**:
+
+```python
+# Suponiendo que los datos están en un DataFrame llamado 'df'
+# Si los datos están en un archivo CSV, puedes cargarlos así:
+# df = pd.read_csv('nombre_archivo.csv')
+
+# Convertir la columna 'donation_date' a tipo datetime
+df['donation_date'] = pd.to_datetime(df['donation_date'])
+
+# Agrupar por día y calcular la suma de los montos de donación diarios
+daily_donations = df.groupby(df['donation_date'].dt.date)['amount'].sum().reset_index()
+```
+
+3. **Visualizar los datos**:
+
+```python
+# Graficar los montos de donación diarios
+plt.figure(figsize=(10, 6))
+plt.plot(daily_donations['donation_date'], daily_donations['amount'], marker='o', linestyle='-')
+plt.title('Monto de donaciones diarias')
+plt.xlabel('Fecha de donación')
+plt.ylabel('Monto de donación')
+plt.xticks(rotation=45)
+plt.grid(True)
+plt.show()
+```
+
+4. **Aplicar la regresión lineal**:
+
+```python
+# Preparar los datos para la regresión lineal
+X = np.array(daily_donations.index).reshape(-1, 1)  # Días como características
+y = daily_donations['amount'].values  # Montos de donación como etiquetas
+
+# Crear el modelo de regresión lineal
+model = LinearRegression()
+
+# Ajustar el modelo a los datos
+model.fit(X, y)
+
+# Predecir los montos de donación para cada día
+predicted_donations = model.predict(X)
+
+# Graficar la regresión lineal
+plt.figure(figsize=(10, 6))
+plt.scatter(X, y, color='blue', label='Datos reales')
+plt.plot(X, predicted_donations, color='red', label='Regresión lineal')
+plt.title('Regresión lineal de montos de donación diarios')
+plt.xlabel('Días')
+plt.ylabel('Monto de donación')
+plt.legend()
+plt.grid(True)
+plt.show()
+```
+
+Este código agrupa los datos por día, visualiza los montos de donación diarios y luego aplica la regresión lineal para predecir los montos de donación 
+futuros basados en la fecha de donación. Asegúrate de tener instaladas las bibliotecas necesarias y de ajustar el código según la estructura de tus 
+datos y tus necesidades específicas.
