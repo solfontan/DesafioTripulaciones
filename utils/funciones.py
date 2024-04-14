@@ -170,7 +170,7 @@ class CategoricalAnalysis:
            
 
 # Preparación de datos 
-# from sklearn.model_selection import train_test_split, cross_validate
+from sklearn.model_selection import train_test_split, cross_validate
 # Modelos
 # from sklearn.linear_model import LogisticRegression
 # from sklearn.ensemble import  RandomForestClassifier,  GradientBoostingClassifier, AdaBoostClassifier, HistGradientBoostingClassifier
@@ -255,3 +255,86 @@ class CategoricalAnalysis:
 
 #     except Exception as e:
 #         print('Surgió un error:', e)
+
+# from sklearn.model_selection import train_test_split, cross_validate
+# Modelos
+
+from sklearn.linear_model import LinearRegression, Ridge, Lasso, ElasticNet
+from sklearn.ensemble import RandomForestRegressor, GradientBoostingRegressor, AdaBoostRegressor, HistGradientBoostingRegressor
+from sklearn.tree import DecisionTreeRegressor, ExtraTreeRegressor
+import xgboost as xgb
+from sklearn.svm import SVR
+from sklearn.neighbors import KNeighborsRegressor
+
+# Ignorar warnings
+import warnings
+warnings.filterwarnings('ignore')
+
+def BaseLineRegressor(x_train, y_train, cv: int, metricas_cross_validate: list):
+    """ Crea la validación cruzada para los modelos que deseemos.
+
+    Args:
+        x_train (_type_): _description_
+        y_train (_type_): _description_
+        cv (int): folds.
+        metricas_cross_validate (list): solo Regresión.
+
+    Returns:
+        df: DataFrame con las métricas obtenidas de la validación cruzada.
+    """
+    try:
+        # Definir modelos disponibles
+        modelos = {
+            "1":  LinearRegression(),
+            "2":  RandomForestRegressor(),
+            "3":  AdaBoostRegressor(),
+            "4":  GradientBoostingRegressor(),
+            "5":  ExtraTreeRegressor(),
+            "6":  DecisionTreeRegressor(),
+            "8":  xgb.XGBRegressor(),
+            "9": KNeighborsRegressor(),
+            "10": SVR(), 
+            "11": HistGradientBoostingRegressor()
+        }
+
+        # Pedir al usuario que seleccione los modelos
+        answer_modelos = input('¿Cuáles son los modelos que desea utilizar? (seleccione números separados por comas o escriba "todos" para seleccionar todos los modelos): 1: Linear Regression, 2: Random Forest, 3: ADABoosting, 4: GradientBoosting, 5: ExtraTrees, 6: DecisionTree, 8: XGBoost, 9: KNN, 10: SVR, 11: HistGradientBoost')
+
+        # Seleccionar modelos según la entrada del usuario
+        if answer_modelos.lower() == 'todos':
+            modelos_seleccionados = modelos
+        else:
+            selected_models_indices = [int(x.strip()) for x in answer_modelos.split(',')]
+            modelos_seleccionados = {key: modelos[key] for key in map(str, selected_models_indices)}
+
+        # Realizar la validación cruzada y calcular las métricas
+        metricas = metricas_cross_validate
+        resultados_dict = {}
+
+        for nombre_modelo, modelo in modelos_seleccionados.items():
+            if cv:
+                cv_resultados = cross_validate(modelo, x_train, y_train, cv=cv, scoring=metricas)
+            else:
+                cv_resultados = cross_validate(modelo, x_train, y_train, cv=5, scoring=metricas)
+
+            for metrica in metricas:
+                clave = f"{nombre_modelo}_{metrica}"
+                resultados_dict[clave] = cv_resultados[f"test_{metrica}"].mean()
+
+        # Mapear claves numéricas a nombres de modelos más descriptivos
+        nombres_descriptivos = ['Linear Regression', 'Random Forest', 'ADABoosting', 'Gradient Boosting', 'Extra Trees', 'Decision Tree', 'CatBoost', 'LGBM', 'XGBoost', 'KNN', 'SVR', 'HistGradientBoost']
+        diccionario_nombres = {clave: nombres_descriptivos[int(clave) - 1] for clave in modelos_seleccionados}
+
+        index = [diccionario_nombres.get(clave.split('_')[0]) for clave in resultados_dict.keys()]
+        metrica = [clave.split('_')[1] for clave in resultados_dict.keys()]
+
+       # Crear DataFrame con nombres descriptivos y métricas como columnas
+        resultados_df = pd.DataFrame({'Modelo': index, 'Metrica': metrica, 'Score': resultados_dict.values()})
+
+        # Crear una tabla pivote para tener las métricas como columnas
+        resultados_pivot = resultados_df.pivot(index='Modelo', columns='Metrica', values='Score')
+
+        return resultados_pivot
+
+    except Exception as e:
+        print('Surgió un error:', e)
