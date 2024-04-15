@@ -71,15 +71,21 @@ def obtener_prediccion_2_semanas():
     for i in range(14):
         if (fecha_actual.month == 12 and subirMes == 1):
             diccionario['año'] = fecha_actual.year+1
+        else:
+            diccionario['año'] = fecha_actual.year
 
         if (fecha_actual.month == 12 and subir_dia):
             subirMes = 1
             diccionario['mes'] = 1
+        else:
+            diccionario['mes'] = fecha_actual.month
 
         if (fecha_actual.day == 30):
             subir_dia = 1
             diccionario['mes'] = fecha_actual.month+1
             diccionario['dia'] = 1+i
+        else:
+            diccionario['dia'] = fecha_actual.day+1+i
 
         df_model = pd.DataFrame(diccionario, index=[0])
 
