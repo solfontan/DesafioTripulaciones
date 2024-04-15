@@ -13,6 +13,8 @@ Este proyecto fue realizado en equipo con el objetivo de predecir la cantidad de
 - Jaime Mayordomo Moreno -> https://github.com/jmayordomom
 - Luna Flores -> https://github.com/lunaft
 - Sol Fontán González -> https://github.com/solfontan
+- Itziar Cid García -> https://github.com/ItziCG
+- Federico Thione -> https://github.com/FedeThione
 
 ## Estrategia Final 🎯
 
