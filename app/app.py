@@ -22,7 +22,7 @@ fila_cero = pd.Series([0] * len(df.columns), index=df.columns)
 # Agrega la fila de datos al DataFrame
 df.loc[0] = fila_cero
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder="static",template_folder="templates")
 
 def obtener_prediccion_dia():
     # Obtener la fecha y hora actual del sistema
