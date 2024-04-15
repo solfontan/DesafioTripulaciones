@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donation prediction</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="init.css">
+    <link rel="stylesheet" href="reset.css">
+</head>
+<body>
+    <div id="container">
+        
+        <h1>Donation prediction</h1>
+        <form action="/predict" method="post" id="container-body">
+            
+            <div id="time">
+
+                <label for="prediction">Prediction:</label>
+                <select id="prediction" name="prediction">
+                    <option value="1">1 day</option>
+                    <option value="2">1 week</option>
+                    <option value="3">2 weeks</option>
+                </select>
+            </div>
+            <input type="submit" value="Predict">
+        </form>
+    </div>
+    <div id="estimacion">
+
+        <h2>Donacion estimada: </h2>
+        <div id="respuesta-api"></div>
+    </div>
+    <script>
+        $("form").submit(function(event) {
+            event.preventDefault();
+
+            const urlAPI = "/predict";
+            const data = $(this).serialize();
+
+            $.ajax({
+                url: urlAPI,
+                method: "POST",
+                data: data,
+                success: function(response) {
+                    const respuesta = document.getElementById("respuesta-api");
+                    respuesta.innerHTML = response;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
