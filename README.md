@@ -1,21 +1,40 @@
-# 📊 Proyecto de Data Science: Análisis de Datos de Meraparivar 🇮🇳
 
-¡Bienvenido al proyecto de Data Science de Meraparivar! Este repositorio contiene el análisis de datos realizado para comprender mejor las necesidades y características de las comunidades atendidas por la ONG Meraparivar en India 🌍.
+---
 
-## 🛠️ Tecnologías Utilizadas
+# Proyecto de Predicción de Donaciones 💸
 
-- Python
-- Jupyter Notebook
-- Pandas
-- NumPy
-- Matplotlib
-- Seaborn
+## Descripción 📝
 
-## 📂 Estructura del Repositorio
+Este proyecto fue realizado en equipo con el objetivo de predecir la cantidad de donaciones que recibirá una organización en los próximos días. Utilizamos una combinación de análisis de series temporales y machine learning para desarrollar un modelo preciso y confiable.
 
-- **data**: Carpeta que contiene los conjuntos de datos utilizados en el análisis.
-- **notebooks**: Carpeta que contiene los Jupyter Notebooks con el código de análisis.
-- **README.md**: Este archivo que proporciona una descripción general del proyecto.
+## Equipo 👥
 
+- Carlos González de Opazo -> https://github.com/astaroth86
+- Jaime Mayordomo Moreno -> https://github.com/jmayordomom
+- Luna Flores -> https://github.com/lunaft
+- Sol Fontán González -> https://github.com/solfontan
 
-¡Gracias por tu interés en nuestro proyecto de Data Science! Esperamos que nuestros análisis puedan contribuir al trabajo importante de Meraparivar en India. 🙏
+## Estrategia Final 🎯
+
+Nuestra estrategia final se basa en dos componentes principales:
+
+### Análisis de Series Temporales ⏰
+
+Utilizamos técnicas avanzadas de análisis de series temporales para entender las tendencias históricas de las donaciones. Esto nos permitió identificar patrones estacionales, tendencias a largo plazo y eventos específicos que afectaron las donaciones en el pasado.
+
+### Extra Tree Regressor 🌳
+
+Implementamos un modelo de regresión utilizando el algoritmo Extra Tree Regressor. Este modelo de machine learning es altamente eficiente y capaz de manejar una gran cantidad de características, lo que lo hace ideal para nuestro conjunto de datos complejo.
+
+## Cómo Usar 🚀
+
+1. Clona este repositorio en tu máquina local.
+2. Instala las dependencias necesarias utilizando `pip install -r requirements.txt`.
+3. Ejecuta el script principal `app.py`.
+4. ¡Explora los resultados de las predicciones!
+
+## Contribuciones 🤝
+
+¡Las contribuciones son bienvenidas! Si deseas contribuir a este proyecto, por favor abre un issue o envía un pull request.
+
+---
