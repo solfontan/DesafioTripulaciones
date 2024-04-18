@@ -22,11 +22,11 @@ Nuestra estrategia final se basa en dos componentes principales:
 
 ### Análisis de Series Temporales ⏰
 
-Utilizamos técnicas avanzadas de análisis de series temporales para entender las tendencias históricas de las donaciones. Esto nos permitió identificar patrones estacionales, tendencias a largo plazo y eventos específicos que afectaron las donaciones en el pasado.
+Utilizamos técnicas avanzadas de análisis de series temporales para entender las tendencias históricas de las donaciones. Esto nos permitió identificar patrones estacionales, tendencias a largo plazo y eventos específicos que afectaron a las donaciones en el pasado.
 
 ### Extra Tree Regressor 🌳
 
-Implementamos un modelo de regresión utilizando el algoritmo Extra Tree Regressor. Este modelo de machine learning es altamente eficiente y capaz de manejar una gran cantidad de características, lo que lo hace ideal para nuestro conjunto de datos complejo.
+Implementamos un modelo de regresión utilizando el algoritmo Extra Tree Regressor. Este modelo de machine learning es altamente eficiente y capaz de manejar una gran cantidad de características, lo que lo hace ideal para nuestro conjunto de datos.
 
 ## Cómo Usar 🚀
 
