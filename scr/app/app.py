@@ -10,10 +10,10 @@ from datetime import datetime
 os.chdir(os.path.dirname(__file__))
 print(os.getcwd())
 
-with open('../model/extra_tree_model.pkl', 'rb') as f:
+with open('./model/extra_tree_model.pkl', 'rb') as f:
     model = pickle.load(f)
 
-with open('../model/dataframe.pkl', 'rb') as f:
+with open('./model/dataframe.pkl', 'rb') as f:
     df = pickle.load(f)
 
 # Crea una fila de datos con valores cero
