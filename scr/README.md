@@ -50,12 +50,12 @@ Este proyecto utiliza un modelo de regresión basado en Extra Trees para analiza
 
 - `data/`: Carpeta para almacenar los datos de la serie temporal.
 - `app/`: Carpeta para almacenar los requisitos de nuestra API.
-            - `model/`: Carpeta para almacenar los modelos entrenados.
-            - `static/`: Carpeta para archivos estáticos de la API (por ejemplo, archivos .css).
-            - `templates/`: Carpeta para plantillas HTML de la API.
-            - `app.py`: Script principal para iniciar la API.
-            - `train_model.py`: Script para entrenar el modelo de regresión.
-            - `requirements.txt`: Lista de dependencias del proyecto.
+1. `model/`: Carpeta para almacenar los modelos entrenados.
+2. `static/`: Carpeta para archivos estáticos de la API (por ejemplo, archivos .css).
+3. `templates/`: Carpeta para plantillas HTML de la API.
+4. `app.py`: Script principal para iniciar la API.
+5. `train_model.py`: Script para entrenar el modelo de regresión.
+6. `requirements.txt`: Lista de dependencias del proyecto.
 
 ## Contribuciones
 
